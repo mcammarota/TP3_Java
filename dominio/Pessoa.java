@@ -1,7 +1,6 @@
 package dominio;
 
-import java.util.InputMismatchException;
-
+import exceptions.InputMismatchException;
 import exceptions.NomeIncompletoException;
 
 public abstract class Pessoa {
@@ -52,6 +51,7 @@ public abstract class Pessoa {
 			throw new NomeIncompletoException("Preenchimento inválido!");
 
 		}
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append(ultimoNome.toUpperCase());
 		sb.append(", ");
@@ -70,6 +70,30 @@ public abstract class Pessoa {
 		this.ultimoNome = nome.substring(posFinal).trim();
 	}
 
+//	public String getNome() {
+//		return nome;
+//	}
+//
+//	public void setNome(String nome) {
+//		this.nome = nome;
+//	}
+//
+//	public String getSobrenome() {
+//		return sobrenome;
+//	}
+//
+//	public void setSobrenome(String sobrenome) {
+//		this.sobrenome = sobrenome;
+//	}
+//
+//	public String getUltimoNome() {
+//		return ultimoNome;
+//	}
+//
+//	public void setUltimoNome(String ultimoNome) {
+//		this.ultimoNome = ultimoNome;
+//	}
+
 	public int getIdade() {
 		return idade;
 	}
@@ -81,5 +105,4 @@ public abstract class Pessoa {
 		
 		this.idade = idade;
 	}
-	
 }

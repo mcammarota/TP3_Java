@@ -1,11 +1,12 @@
 package testes;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import dominio.Aluno;
 import dominio.Pessoa;
 import dominio.Professor;
+import dominio.Aluno;
+import exceptions.InputMismatchException;
 import exceptions.NomeIncompletoException;
 
 public class TP3 {
@@ -16,7 +17,7 @@ public class TP3 {
 
 	private static final int QTDE = 1;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NomeIncompletoException {
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -36,7 +37,8 @@ public class TP3 {
 				
 				switch (opcao) {
 				case "1":
-					try {
+					if(index < QTDE) {
+						
 						Professor prof = new Professor();
 
 						prof.setId(index);
@@ -45,7 +47,11 @@ public class TP3 {
 						prof.setNome(in.next());
 
 						System.out.println("Informe a idade: ");
-						prof.setIdade(in.nextInt());
+						try {
+							prof.setIdade(in.nextInt());
+						} catch (InputMismatchException e) {
+							System.out.println("Erro: " + e.getMessage());
+						}
 
 						System.out.println("Informe o salário: ");
 						prof.setSalario(in.nextFloat());
@@ -56,16 +62,15 @@ public class TP3 {
 						pessoas[index] = prof;
 
 						index++;
+
+					} else {
+						System.out.println("Não existe mais vaga para o cadastramento!");
 					}
-						
-					catch (ArrayIndexOutOfBoundsException | InputMismatchException e) {
-						System.out.println(e.getMessage());
-					}
-					
+
 					break;
 					
 				case "2":
-					try {
+					if(index < QTDE) {
 						Aluno aluno = new Aluno();
 
 						aluno.setId(index);
@@ -74,7 +79,11 @@ public class TP3 {
 						aluno.setNome(in.next());
 
 						System.out.println("Informe a idade: ");
-						aluno.setIdade(in.nextInt());
+						try {
+							aluno.setIdade(in.nextInt());
+						} catch (InputMismatchException e) {
+							System.out.println("Erro: " + e.getMessage());
+						}
 
 						System.out.println("Informe a nota 1: ");
 						aluno.setNota1(in.nextFloat());
@@ -85,11 +94,11 @@ public class TP3 {
 						pessoas[index] = aluno;
 
 						index++;
-							
-					} catch (ArrayIndexOutOfBoundsException e) {
-						System.out.println("Não existe mais vaga para o cadastramento!!!");
+
+					} else {
+						System.out.println("Não existe mais vaga para o cadastramento!");
 					}
-				
+
 					break;
 					
 				case "3":
