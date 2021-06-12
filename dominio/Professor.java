@@ -9,10 +9,6 @@ public class Professor extends Pessoa{
 		
 	}
 	
-	public Professor(String nome, int idade) {
-		super(nome, idade);
-	}
-	
 	@Override
 	public String toString() {
 		return String.format("%.2f - %s", salario, integral);

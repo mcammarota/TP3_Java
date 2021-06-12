@@ -6,8 +6,8 @@ import dominio.Aluno;
 import dominio.Pessoa;
 import dominio.Professor;
 import dominio.Aluno;
-import exceptions.InputMismatchException;
-import exceptions.NomeIncompletoException;
+import exceptions.NumberFormatException;
+import exceptions.StringIndexOutOfBoundsException;
 
 public class TP3 {
 	
@@ -15,9 +15,9 @@ public class TP3 {
 	
 	private static int index;	
 
-	private static final int QTDE = 1;
+	private static final int QTDE = 100;
 	
-	public static void main(String[] args) throws NomeIncompletoException {
+	public static void main(String[] args) {
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -44,13 +44,23 @@ public class TP3 {
 						prof.setId(index);
 
 						System.out.println("Informe o nome completo: ");
-						prof.setNome(in.next());
+						try {
+							in.nextLine();
+							String nome = in.nextLine();
+							prof.setNome(nome);
+						} catch (Exception e) {
+							System.out.println("Erro: nome precisa ser completo.");
+							break;
+						}
 
 						System.out.println("Informe a idade: ");
-						try {
-							prof.setIdade(in.nextInt());
-						} catch (InputMismatchException e) {
-							System.out.println("Erro: " + e.getMessage());
+						try { 
+							String idade = in.next();
+							int Value = Integer.parseInt(idade);
+							prof.setIdade(Value);
+						} catch (Exception e) {
+							System.out.println("Erro: o número deve ser inteiro.");
+							break;
 						}
 
 						System.out.println("Informe o salário: ");
@@ -76,13 +86,23 @@ public class TP3 {
 						aluno.setId(index);
 
 						System.out.println("Informe o nome completo: ");
-						aluno.setNome(in.next());
+						try {
+							in.nextLine();
+							String nome = in.nextLine();
+							aluno.setNome(nome);
+						} catch (Exception e) {
+							System.out.println("Erro: nome precisa ser completo.");
+							break;
+						}
 
 						System.out.println("Informe a idade: ");
-						try {
-							aluno.setIdade(in.nextInt());
-						} catch (InputMismatchException e) {
-							System.out.println("Erro: " + e.getMessage());
+						try { 
+							String idade = in.next();
+							int Value = Integer.parseInt(idade);
+							aluno.setIdade(Value);
+						} catch (Exception e) {
+							System.out.println("Erro: o número deve ser inteiro.");
+							break;
 						}
 
 						System.out.println("Informe a nota 1: ");
@@ -108,7 +128,7 @@ public class TP3 {
 					if(pos >= 0 && pos < index) {
 						try {
 							pessoas[pos].imprimir();
-						} catch (NomeIncompletoException e) {
+						} catch (StringIndexOutOfBoundsException e) {
 							System.out.println("Erro: " + e.getMessage());
 						}
 					} else {
@@ -138,7 +158,7 @@ public class TP3 {
 		for(int i = 0; i < index; i++) {
 			try {
 				pessoas[i].imprimir();
-			} catch (NomeIncompletoException e) {
+			} catch (StringIndexOutOfBoundsException e) {
 				System.out.println("Erro: " + e.getMessage());
 			}
 		}

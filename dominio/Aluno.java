@@ -10,10 +10,6 @@ public class Aluno extends Pessoa {
 		
 	}
 	
-	public Aluno(String nome, int idade) {
-		super(nome, idade);
-	}
-	
 	public float calcularMedia() {
 		return (this.nota1 + this.nota2)/2;
 	}
